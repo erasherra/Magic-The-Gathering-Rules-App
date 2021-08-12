@@ -8,7 +8,7 @@ import {formateRulesToJson} from '../src/ruleHandler';
 const rulePath = process.env.RULE_PATH || null;
 const ruleTestPath = process.env.RULE_PATH_TEST || null;
 
-const placeholderForRules = "Rules appear here";
+const placeholderForRules = "";
 //import {getStaticProps} from './ruleHandler'
 
 export async function getStaticProps(context) {
@@ -106,8 +106,12 @@ export default function Home({ data }) {
 	*/
 	const handleClick = (e, obj) => {
 		
-		console.log(obj.chapter);
-		console.log(chapter);
+		if(obj === null){
+			setRule(placeholderForRules);
+			setChapter("");
+			return;
+		}
+		
 		if(chapter !== obj.chapter){
 			
 			let displayRules = obj.rules.map((rule) => {
@@ -200,7 +204,7 @@ export default function Home({ data }) {
 		*/}
 		</div>
 		
-		<div>{rules}</div>
+		<div className="noticeBoard" onClick={(e) => handleClick(e,null)}>{rules}</div>
 		
 		
 		
@@ -281,9 +285,35 @@ export default function Home({ data }) {
           align-items: center;
         }
 		
+		.rule{
+			padding: 10px;
+		}
+		
+		.noticeBoard{
+			color:black;
+			border: 2px solid black;
+			background-color: #caa659;
+			overflow-y:auto;
+			position: fixed;
+			top:30px;
+			width: 80%;
+			max-height: 50%;
+			box-shadow: 0 8px 8px -4px black;
+			
+		}
+		.noticeBoard::-webkit-scrollbar {
+			display: none;
+		}
+		
+		.noticeBoard {
+			-ms-overflow-style: none;  /* IE and Edge */
+			scrollbar-width: none;  /* Firefox */
+		}
+		
 		.ruleLink{
 			margin: 10px;
 			text-align: center;
+			
 		}
 		.fire{
 			background-image: url("../assets/fire_64.gif");
