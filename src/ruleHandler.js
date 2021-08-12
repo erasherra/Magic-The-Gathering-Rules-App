@@ -4,7 +4,7 @@ let rules = {};
 let limit = 5000;
 
 
-export function formateRulesToJson(ruleInText){
+export function formateRulesToObject(ruleInText){
 	
 	console.log('ruleInText', ruleInText.substring(0,20));
 	
@@ -14,12 +14,8 @@ export function formateRulesToJson(ruleInText){
 		if(line.match(/\S/)){
 			let subString = line.substring(0,10)
 			if(subString.match(/([0-9]+[.]+[0-9]+[a-g])|([0-9]+[.])/)){
-				//console.log(index + " " + line);
 				
 				filterRules(line);
-				
-				
-				//console.log();
 			}
 			
 		}
@@ -36,27 +32,10 @@ export function formateRulesToJson(ruleInText){
 function filterRules(line){
 	let key = line.substring(0,10).split(" ")[0];
 	
-	
-	//TODO replace with regex or filter
-	
 	if(!(key in rules)){
 		rules[key] = line;
 	}
 	
-	
-	//TODO replace with regex or filter
-	/*
-	if(key.length < 3){
-		console.log("Tittle")
-		rules[]
-	}else if(key.length <= 4){
-		console.log("Chapter")
-		
-	}else{
-		console.log("Rule")
-		
-	}
-	*/
 }
 
 let obj = {
@@ -72,7 +51,6 @@ function createObject(rules){
 	let arr = [];
 	let ruleArr = [];
 	for (let key in rules) {
-		//console.log(key, rules[key]);
 		if(key.length < 3){
 			continue;
 		}
@@ -86,7 +64,6 @@ function createObject(rules){
 			
 		}else{
 			arr.map((o) => {
-				//console.log(o.chapter)
 				if(key.startsWith(o.chapter)){
 					o.rules.push(rules[key])
 				}
@@ -95,9 +72,7 @@ function createObject(rules){
 			
 		}
 		
-		
 	}
-	//console.log(arr[0])
 	return arr;
 }
 
