@@ -35,7 +35,7 @@ export async function getStaticProps(context) {
 	if (!data) {
 		return {
 			redirect: {
-				destination: '/',
+				destination: '/status',
 				permanent: false,
 			},
 		}
@@ -136,9 +136,13 @@ export default function Home({ data }) {
 	};
 	
 	/**
+	*This function finds all of the searched words that are in the rules.
+	*Rules will appear when you start to type.
 	*
+	*When you click or search the object it will print the rules to page or “noticeBoard” and if you click the “noticeBoard” it will disappear. 
 	*/
-	//TODO: highlight the word in search
+	//FIX: it does not set all of the searched strings to uppercase
+	//TODO: replace string with element which can be used with highlighting the search word
 	const handleSearch = (search) =>{
 		
 		console.log(search);
@@ -149,12 +153,15 @@ export default function Home({ data }) {
 			}else{
 					displayRules = data.map((obj) => {return <div key={obj.chapter}> 
 					{obj.rules.map((rule, index) => {
-						const ruleLowerCase = rule.toLowerCase();
+						
+						
+						let compareRule = rule;
+						const ruleLowerCase = compareRule.toLowerCase();
 						let compare = search;
+						let highlightText = compare;
 						if(ruleLowerCase.includes(compare.toLowerCase())){
 							return(
-								//<p key={obj.chapter+index}>{rule.replace(replace,search.toUpperCase())}</p>
-								<p key={obj.chapter+index}>{rule}</p>
+								<p key={obj.chapter+index}>{rule.replace(compare, highlightText.toUpperCase())}</p>
 							)
 						}
 					})
@@ -187,15 +194,16 @@ export default function Home({ data }) {
 		<div className={noticeBoard} onClick={(e) => handleClick(e,null)}>{rules}</div>
 		
 		
-		
+		<div className="ruleContainer">
 		{
 		  data.map(obj => {
 			
-			return <Link key={obj.chapter} href="/" >
-			<a className="ruleLink" onClick={(e) => handleClick(e,obj)}>{obj.name}</a>
-			</Link>})
+			return <div key={obj.chapter} >
+			<button className="ruleLink" onClick={(e) => handleClick(e,obj)}>{obj.name}</button>
+			</div>})
 		  
 		}
+		</div>
 		<Search  className="searchBar" handleSearch={handleSearch}/>
 		
 		<div className="fire">
@@ -254,9 +262,20 @@ export default function Home({ data }) {
 			scrollbar-width: none;  /* Firefox */
 		}
 		
+		.ruleContainer{
+			
+			margin-bottom: 60px;
+			text-align: center;
+		}
+		
 		.ruleLink{
 			margin: 10px;
 			text-align: center;
+			color:white;
+			background-color: transparent;
+			border: none;
+			font-size: large;
+			font-family: "ＭＳ Ｐゴシック";
 			
 		}
 		.fire{
@@ -290,6 +309,7 @@ export default function Home({ data }) {
           text-align: center;
 		  padding:20px;
 		  font-size: large;
+		  font-weight: bold;
         }
 
         @media (max-width: 600px) {
