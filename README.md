@@ -3,6 +3,8 @@
 
 This application is a simple navigation tool for Magic The Gathering Rules. It displays a list of chapters which contains the rules. One can also search the rules from the bottom search bar.
 
+Next.js was used in this project because of the efficient way it can execute commands from server-side in built time. That property is used to download the rules (text file).
+
 These rules are effective as of April 22, 2021.
 
 **Demo**: http://www.magicthegatheringrules.art
@@ -72,3 +74,5 @@ docker-compose up
 This application is a one pager app so everything is displayed from index.js which is located in the pages folder. Application downloads The Magic (text file) rules in build time from a given environment path (.env file). After that the rules are converted to JS objects by ruleHandler from src and used for showing the content in a more human friendly way. 
 
 The assets folder contains self made gif and background image and they are free for use in any way one likes.
+
+updateImage.sh is for linux server to update manually changes (no pipeline)
