@@ -1,9 +1,9 @@
 # Magic: The Gathering Comprehensive Rules
 
 
-This application is a simple navigation tool for Magic The Gathering Rules. It displays a list of chapters which contains the rules. One can also search the rules from the bottom search bar.
+This application is a simple navigation UI for Magic The Gathering Rules. It displays a list of chapters which contains the rules. One can also search the rules from the bottom search bar.
 
-Next.js was used in this project because of the efficient way it can execute commands from server-side in built time. That property is used to download the rules (text file).
+Next.js was used in this project because of the efficient way it can execute commands from server-side in built time ([see](https://www.educative.io/blog/nextjs-tutorial-examples#what)). That property is used to download the rules (text file).
 
 These rules are effective as of April 22, 2021.
 
