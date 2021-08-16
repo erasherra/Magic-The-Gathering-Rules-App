@@ -51,6 +51,8 @@ cd Magic-The-Gathering-Rules-App
 docker-compose up
 ```
 
+You can update the image by running updateImage.sh (in linux).
+
 
 ## Data and file overview
 
@@ -75,4 +77,4 @@ This application is a one pager app so everything is displayed from index.js whi
 
 The assets folder contains self made gif and background image and they are free for use in any way one likes.
 
-updateImage.sh is for linux server to update manually changes (no pipeline)
+updateImage.sh is shell script for updating the image and running it (used in my server).
